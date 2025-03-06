@@ -9,7 +9,7 @@
 		<title>Online Examination System</title>
 	</head>
 	<body>
-		<form name="f1" method="get" action="Login_Back.jsp">
+		<form name="f1" method="get" action="Student_Login_Back.jsp">
 			<u>
 				<h1>Login Form</h1>
 			</u>
