@@ -14,10 +14,10 @@
 		  <u><h1>Registration</h1></u>
 		  <table>
 			    <tr>
-			      	<td>Name</td><td><input type="text" name="t1" placeholder="enter username"></td>
+			      	<td>Name</td><td><input type="text" name="t1" placeholder="Enter username"></td>
 			    </tr>
 			    <tr>
-			      	<td>Password</td><td><input type="password" name="t2" placeholder="enter password"></td>
+			      	<td>Password</td><td><input type="password" name="t2" placeholder="Enter password"></td>
 			    </tr>
 			    <tr>
 			      	<td>Date of Birth</td>
@@ -70,7 +70,7 @@
 				     </td>
 			    </tr>
 				<tr>
-					<td>Sex</td>
+					<td>Gender</td>
 					<td>
                                <input type="radio" name="r"  value="male">Male
                                <input type="radio" name="r"  value="female">Female
