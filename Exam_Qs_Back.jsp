@@ -8,10 +8,10 @@
 	<body>
 		<u><h1>Exam Result</h1></u>
 		<table border="1" width="100%">
-							<tr bgcolor="yellow">
-								<td>STUID</td>
-								<td><%=(String)session.getAttribute("u1")%></td>
-							</tr>
+			<tr bgcolor="yellow">
+				<td>STUID</td>
+				<td><%=(String)session.getAttribute("u1")%></td>
+			</tr>
 		<%
 			try
 			{	
@@ -20,45 +20,43 @@
 				ArrayList<String> responses=new ArrayList<>();//arraylist of responses(ans marked)
 				ArrayList<Integer> marks1=new ArrayList<>();//arraylist of marks for each qs
 				ArrayList<Integer> marks2=new ArrayList<>();//arraylist of marks obtained
-				ArrayList<String> corrections=new ArrayList<>();//arraylist of correct/incorrect
+				ArrayList<String> corrections=new ArrayList<>();//arraylist of corrections as correct/incorrect
 						
 				//STUID
-				String t1=(String) session.getAttribute("u1");//stuid	
-				String l1=(String) session.getAttribute("l1");//subjid
+				String t1=(String) session.getAttribute("u1");//STUID	
+				String l1=(String) session.getAttribute("l1");//SUBJID
 				//out.println("Student ID: "+t1+"\n");
 				
 				//QSID AND ANS MARKED
 				int k;
-				int[] z=(int[]) session.getAttribute("v");//qsid
+				int[] z=(int[]) session.getAttribute("v");//order of random QSID
 				
 				//ANSWERS STORED IN ARRAYLIST ACCORIDNG TO RANDOM QS
 				for(int j=0;j<3;j++)
 				{
-					PreparedStatement ps=con.prepareStatement("Select QS,ANS,MARKS from ESHA.EXAM_QS WHERE QSID=? and SUBJID=?");
-					ps.setString(1,Integer.toString(z[j]));
-					ps.setString(1,l1);
+					PreparedStatement ps=con.prepareStatement("Select QS,ANS,MARKS from EXAM_QS WHERE QSID=? and SUBJID=?");
+					ps.setString(1,Integer.toString(z[j]));//order of random questions
+					ps.setString(1,l1);//SUBJID
 					ResultSet result=ps.executeQuery();
 					if(result.next())
 					{
-						String ans=result.getString("ANS");
-						answers.add(ans);
 						String qs=result.getString("QS");
-						questions.add(qs);
+						questions.add(qs);//added to arraylist of questions
+						String ans=result.getString("ANS");
+						answers.add(ans);//added to arraylist of corrct answers
 						String m=result.getString("MARKS");
 						int n=Integer.parseInt(m);
-						marks1.add(n);
+						marks1.add(n);//added to arraylist of marks for each qs
 					}
 				}
 				
 				for(k=1;k<4;k++)
 				{
-					//qsid
+					//QSID
 					String t2=Integer.toString(z[k-1]);
-					
  					String y=String.valueOf(k);
-					String t3=request.getParameter(y); 
-
-					responses.add(t3);
+					String t3=request.getParameter(y);//fetching which option marked
+					responses.add(t3);//added to arraylist of responses(ans marked)
 				}
 				
 				//CHECKING
@@ -66,13 +64,13 @@
 				{
 					if(answers.get(i).equals(responses.get(i)))
 					{
-						corrections.add("Correct");
-						marks2.add(marks1.get(i));
+						corrections.add("Correct");//added to arraylist of corrections as correct
+						marks2.add(marks1.get(i));//added to arraylist of marks obtained for correct ans
 					}
 					else
 					{
-						corrections.add("Not Correct");
-						marks2.add(0);
+						corrections.add("Not Correct");//added to arraylist of corrections as not correct
+						marks2.add(0);//added to arraylist of marks obtained for incorrect ans
 					}
 				}
 				
@@ -115,7 +113,7 @@
 			}
 			catch(Exception e)
 			{
-				System.out.println(e.getMessage());
+				out.println(e.getMessage());
 			}
 		%>
 	</body>
