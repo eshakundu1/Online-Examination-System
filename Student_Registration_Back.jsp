@@ -14,9 +14,9 @@
 				int newIdNumber=0;
 				if(result1.next())
 				{
-					String lastId = result1.getString(1);
-	                int lastIdNumber = Integer.parseInt(lastId.substring(1));
-	                newIdNumber = lastIdNumber + 1;
+				    String lastId = result1.getString(1);
+	                	    int lastIdNumber = Integer.parseInt(lastId.substring(1));
+	               	            newIdNumber = lastIdNumber + 1;
 				}
 				
 				String t1=request.getParameter("t1");
@@ -31,7 +31,7 @@
 				String t5=request.getParameter("r");
 				String t6 = "S" + newIdNumber;
 				
-				PreparedStatement ps=con.prepareStatement("insert into ESHA.STUDENT_REGISTRATION values(?,?,?,?,?)");
+				PreparedStatement ps=con.prepareStatement("insert into STUDENT values(?,?,?,?,?,?)");
 				ps.setString(1,t6);
 				ps.setString(2,t1);
 				ps.setString(3,t2);
@@ -49,7 +49,7 @@
 			}
 			catch(Exception e)
 			{
-				System.out.println(e.getMessage());
+				out.println(e.getMessage());
 			}
 		%>
 	</body>
