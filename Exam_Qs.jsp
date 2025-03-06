@@ -12,6 +12,8 @@
 		  <u><h1>Exam</h1></u>
 		  <table>
 			<%
+			String t1=request.getParameter("b1");//SUBJID
+			session.setAttribute("l1",t1);//SUBJID
 			try
 			{
 					//Generating random question numbers
@@ -42,17 +44,15 @@
 					int k=1;
 					for(int q=0;q<3;q++)
 					{
-						PreparedStatement ps1=con.prepareStatement("Select QSID,QS,ANSOP1,ANSOP2,ANSOP3 from EXAM_QS where QSID=?");
-						ps1.setString(1,Integer.toString(x[q]));//Fetching random question
+						PreparedStatement ps1=con.prepareStatement("Select QSID,QS,ANSOP1,ANSOP2,ANSOP3 from EXAM_QS where QSID=? and SUBJID=?");
+						ps1.setString(1,Integer.toString(x[q]));//order of random questions
+						ps1.setString(2,t1);//SUBJID
 						ResultSet result1=ps1.executeQuery();
 						if(result1.next())
 						{	
-							%>	
+						    %>	
 						    <tr>
 						      	<td>QUESTION</td>
-						     </tr>
-						     <tr>
-						      	<td><%=(String)result1.getString(1)%></td>
 						     </tr>
 						     <tr>
 						        <td><%=(String)result1.getString(2)%></td>
@@ -102,38 +102,36 @@
 						//random options display
 						while(t==0)
 						{
-					    %>
-					    <tr>
+					    	%>
+					    	<tr>
 							<td>OPTIONS</td>
 						</tr>
 						<tr>
 							<td>
-		                               <input type="radio" name="<%=k%>"  value="<%=options.get(op[0]-1)%>"><%=options.get(op[0]-1)%>
-		                               <input type="radio" name="<%=k%>"  value="<%=options.get(op[1]-1)%>"><%=options.get(op[1]-1)%>
-		                               <input type="radio" name="<%=k%>"  value="<%=options.get(op[2]-1)%>"><%=options.get(op[2]-1)%>
-		                               
+		                               			<input type="radio" name="<%=k%>"  value="<%=options.get(op[0]-1)%>"><%=options.get(op[0]-1)%>
+		                               			<input type="radio" name="<%=k%>"  value="<%=options.get(op[1]-1)%>"><%=options.get(op[1]-1)%>
+		                               			<input type="radio" name="<%=k%>"  value="<%=options.get(op[2]-1)%>"><%=options.get(op[2]-1)%>
 							</td>
 						</tr>
-						<tr>
-					 	</tr>
 						<%
 						t=1;
 						}
 						k++;
 					}
 					
-				%>
+					%>
 					<tr align="center">
-					 <td colspan="2">
-			            <input type="submit" name="b1" value="SUBMIT">
-			            <input type="reset" name="b2" value="RESET">
-			    	</td>
-			  	</tr>
+					 	<td colspan="2">
+			            			<input type="submit" name="b1" value="SUBMIT">
+			            			<input type="reset" name="b2" value="RESET">
+			    			</td>
+			  		</tr>
 			  </table>
 			<%
 			}
 			catch(Exception e1)
 			{
+				out.println(e1.getMessage());
 			}
 			%>
 		</form>
