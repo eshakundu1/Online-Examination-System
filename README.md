@@ -1,7 +1,7 @@
 # Online-Examination-System
 Online Examination System provides a user-friendly interface for students to give exams. The questions and options are randomly fetched from the database so that the order of questions and options are not same for students preventing chances of cheating.
 
-WORKING
+STEPS
 1.	Select Student/Teacher/Admin from Homepage.
 2.	For Admin, login using username and password.
 3.	Admin's page is opened after entering correct credentials. 
