@@ -27,7 +27,7 @@
 			}
 			catch(Exception e)
 			{
-				System.out.println(e.getMessage());
+				out.println(e.getMessage());
 			}
 		%>
 	</body>
