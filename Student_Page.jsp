@@ -18,15 +18,14 @@
 				</tr>
 			</table>
 			<h2 align="center">Choose subject to give exam</h2>
-
 				<tr>
 					<td colspan="2">
-						<input type="submit" name="b1" value="SCIENCE">
+						<button type="submit" name="b1" value="P01">GK</button>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="submit" name="b1" value="GK">
+						<button type="submit" name="b1" value="P02">SCIENCE</button>
 					</td>
 				</tr>
 			  </form>		
